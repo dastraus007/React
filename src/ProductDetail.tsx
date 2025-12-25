@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams, Link } from 'react-router-dom'
+import { useCartStore } from './store/cartStore'
+import { useToastStore } from './store/toastStore'
 
 interface ProductDetail {
   id: number
@@ -24,6 +26,16 @@ export default function ProductDetail() {
     queryFn: () => fetchProduct(id!),
     enabled: !!id,
   })
+  
+  const addItem = useCartStore((state) => state.addItem)
+  const addToast = useToastStore((state) => state.addToast)
+
+  const handleAddToCart = () => {
+    if (data) {
+      addItem({ id: data.id, title: data.title, price: data.price })
+      addToast('success', `${data.title} added to cart!`)
+    }
+  }
 
   if (isLoading) return <div>Loading product details...</div>
   if (error) return <div>Error: {error.message}</div>
@@ -37,6 +49,12 @@ export default function ProductDetail() {
       <p><strong>Brand:</strong> {data.brand}</p>
       <p><strong>Category:</strong> {data.category}</p>
       <p><strong>Description:</strong> {data.description}</p>
+      <button 
+        onClick={handleAddToCart}
+        style={{ marginTop: '10px' }}
+      >
+        Add to Cart
+      </button>
     </div>
   )
 }
