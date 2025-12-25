@@ -9,22 +9,15 @@ import { SidebarProvider, useSidebar } from './context/SidebarContext'
 import './App.css'
 
 function AppContent() {
-  const getTotalItems = useCartStore((state) => state.getTotalItems())
+  const totalItems = useCartStore((state) => state.getTotalItems())
   const { toggle } = useSidebar()
 
   return (
     <div>
-      <nav style={{ display: 'flex', gap: '20px', padding: '10px', borderBottom: '2px solid #333', alignItems: 'center' }}>
+      <nav>
         <Link to="/">Products</Link>
-        <Link to="/cart">Cart ({getTotalItems})</Link>
-        <button
-          onClick={toggle}
-          style={{
-            marginLeft: 'auto',
-            padding: '8px 16px',
-            cursor: 'pointer',
-          }}
-        >
+        <Link to="/cart">Cart ({totalItems})</Link>
+        <button onClick={toggle}>
           🛒 Cart Sidebar
         </button>
       </nav>

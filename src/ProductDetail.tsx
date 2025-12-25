@@ -38,10 +38,7 @@ export default function ProductDetail() {
   }
 
   if (isLoading) return <div>Loading product details...</div>
-  if (error) {
-    addToast('error', `Failed to load product: ${error.message}`)
-    return <div>Error: {error.message}</div>
-  }
+  if (error) return <div>Error: {error.message}</div>
   if (!data) return <div>No product found</div>
 
   return (

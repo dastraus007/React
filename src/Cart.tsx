@@ -6,7 +6,7 @@ export default function Cart() {
   const removeItem = useCartStore((state) => state.removeItem)
   const updateQuantity = useCartStore((state) => state.updateQuantity)
   const clearCart = useCartStore((state) => state.clearCart)
-  const getTotalPrice = useCartStore((state) => state.getTotalPrice())
+  const totalPrice = useCartStore((state) => state.getTotalPrice())
 
   if (items.length === 0) {
     return (
@@ -51,7 +51,7 @@ export default function Cart() {
       </div>
 
       <div style={{ marginTop: '20px', padding: '15px', border: '2px solid #333' }}>
-        <h2>Total: ${getTotalPrice.toFixed(2)}</h2>
+        <h2>Total: ${totalPrice.toFixed(2)}</h2>
         <button 
           onClick={clearCart}
           style={{ backgroundColor: '#ff4444', color: 'white', marginTop: '10px' }}
