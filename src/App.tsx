@@ -8,6 +8,7 @@ import ToastHost from './ToastHost'
 import { useCartStore } from './store/cartStore'
 import { SidebarProvider, useSidebar } from './context/SidebarContext'
 import { useTheme } from './hooks/useTheme'
+import type { Language } from './i18n'
 import './App.css'
 
 function AppContent() {
@@ -16,14 +17,14 @@ function AppContent() {
   const { toggle } = useSidebar()
   const { theme, setTheme } = useTheme()
 
-  const changeLanguage = (lng: string) => {
+  const changeLanguage = (lng: Language) => {
     i18n.changeLanguage(lng)
   }
 
   return (
     <div>
       <nav>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', flexWrap: 'wrap' }}>
+        <div className="nav-controls">
           <Link to="/">{t('products')}</Link>
           <Link to="/cart">{t('cart')} ({totalItems})</Link>
           <button onClick={toggle}>
@@ -31,17 +32,17 @@ function AppContent() {
           </button>
           
           {/* Language Switcher */}
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <div className="language-switcher">
             <span>{t('languageSwitcher')}:</span>
             <button 
               onClick={() => changeLanguage('en')}
-              style={{ fontWeight: i18n.language === 'en' ? 'bold' : 'normal' }}
+              className={i18n.language === 'en' ? 'active' : ''}
             >
               English
             </button>
             <button 
               onClick={() => changeLanguage('he')}
-              style={{ fontWeight: i18n.language === 'he' ? 'bold' : 'normal' }}
+              className={i18n.language === 'he' ? 'active' : ''}
             >
               עברית
             </button>

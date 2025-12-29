@@ -6,6 +6,8 @@ import { Column } from 'primereact/column'
 import { Button } from 'primereact/button'
 import { useCartStore } from './store/cartStore'
 import { useToastStore } from './store/toastStore'
+import { currencyConfig } from './i18n'
+import type { Language } from './i18n'
 
 interface Product {
   id: number
@@ -39,9 +41,10 @@ export default function ProductList() {
   }
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(i18n.language === 'he' ? 'he-IL' : 'en-US', {
+    const config = currencyConfig[i18n.language as Language] || currencyConfig.en
+    return new Intl.NumberFormat(config.locale, {
       style: 'currency',
-      currency: i18n.language === 'he' ? 'ILS' : 'USD',
+      currency: config.currency,
     }).format(price)
   }
 

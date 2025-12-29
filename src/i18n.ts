@@ -1,6 +1,17 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
+// Type definitions
+export type Language = 'en' | 'he' | 'ru'
+
+export type Currency = 'USD' | 'ILS'
+
+export const currencyConfig: Record<Language, { locale: string; currency: Currency }> = {
+  en: { locale: 'en-US', currency: 'USD' },
+  he: { locale: 'he-IL', currency: 'ILS' },
+  ru: { locale: 'ru-RU', currency: 'USD' },
+}
+
 // Translation resources
 const resources = {
   en: {
