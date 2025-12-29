@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useCartStore } from './store/cartStore'
 import { useToastStore } from './store/toastStore'
 
@@ -20,6 +21,7 @@ async function fetchProduct(id: string) {
 
 export default function ProductDetail() {
   const { id } = useParams()
+  const { t, i18n } = useTranslation(['products', 'common'])
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['product', id],
@@ -33,27 +35,34 @@ export default function ProductDetail() {
   const handleAddToCart = () => {
     if (data) {
       addItem({ id: data.id, title: data.title, price: data.price })
-      addToast('success', `${data.title} added to cart!`)
+      addToast('success', t('common:addedToCart', { title: data.title }))
     }
   }
 
-  if (isLoading) return <div>Loading product details...</div>
-  if (error) return <div>Error: {error.message}</div>
-  if (!data) return <div>No product found</div>
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat(i18n.language === 'he' ? 'he-IL' : 'en-US', {
+      style: 'currency',
+      currency: i18n.language === 'he' ? 'ILS' : 'USD',
+    }).format(price)
+  }
+
+  if (isLoading) return <div>{t('products:loadingDetails')}</div>
+  if (error) return <div>{t('common:error')}: {error.message}</div>
+  if (!data) return <div>{t('products:productNotFound')}</div>
 
   return (
     <div>
-      <Link to="/">← Back to Products</Link>
+      <Link to="/">← {t('products:backToProducts')}</Link>
       <h1>{data.title}</h1>
-      <p><strong>Price:</strong> ${data.price}</p>
-      <p><strong>Brand:</strong> {data.brand}</p>
-      <p><strong>Category:</strong> {data.category}</p>
-      <p><strong>Description:</strong> {data.description}</p>
+      <p><strong>{t('products:price')}:</strong> {formatPrice(data.price)}</p>
+      <p><strong>{t('products:brand')}:</strong> {data.brand}</p>
+      <p><strong>{t('products:category')}:</strong> {data.category}</p>
+      <p><strong>{t('products:description')}:</strong> {data.description}</p>
       <button 
         onClick={handleAddToCart}
         style={{ marginTop: '10px' }}
       >
-        Add to Cart
+        {t('common:addToCart')}
       </button>
     </div>
   )
