@@ -5,6 +5,7 @@ import ProductDetail from './ProductDetail'
 import Cart from './Cart'
 import CartSidebar from './CartSidebar'
 import ToastHost from './ToastHost'
+import RegistrationForm from './RegistrationForm'
 import { useCartStore } from './store/cartStore'
 import { SidebarProvider, useSidebar } from './context/SidebarContext'
 import { useTheme } from './hooks/useTheme'
@@ -27,6 +28,7 @@ function AppContent() {
         <div className="nav-controls">
           <Link to="/">{t('products')}</Link>
           <Link to="/cart">{t('cart')} ({totalItems})</Link>
+          <Link to="/register">Register</Link>
           <button onClick={toggle}>
             🛒 {t('cartSidebar')}
           </button>
@@ -75,6 +77,7 @@ function AppContent() {
         <Route path="/" element={<ProductList />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/register" element={<RegistrationForm />} />
       </Routes>
       <CartSidebar />
       <ToastHost />
