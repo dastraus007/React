@@ -45,8 +45,15 @@ nav {
   display: flex;
   gap: 20px;
   padding: 10px;
-  border-bottom: 2px solid #333;
   align-items: center;
+}
+
+body.dark-theme nav {
+  border-bottom: 2px solid #333;
+}
+
+body.light-theme nav {
+  border-bottom: 2px solid #ddd;
 }
 
 nav button {

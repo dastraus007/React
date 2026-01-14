@@ -30,6 +30,9 @@ export function useTheme() {
     link.href = THEMES[theme]
     document.head.appendChild(link)
 
+    // Apply theme class to body
+    document.body.className = theme.includes('light') ? 'light-theme' : 'dark-theme'
+
     // Save to localStorage
     localStorage.setItem(THEME_STORAGE_KEY, theme)
   }, [theme])
