@@ -5,36 +5,71 @@
 }
 
 .registration-form {
-  background: white;
   border-radius: 8px;
   padding: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+body.light-theme .registration-form {
+  background: white;
+}
+
+body.dark-theme .registration-form {
+  background: #1e1e1e;
+}
+
 .registration-form h1 {
   margin: 0 0 0.5rem 0;
-  color: #333;
   font-size: 2rem;
+}
+
+body.light-theme .registration-form h1 {
+  color: #333;
+}
+
+body.dark-theme .registration-form h1 {
+  color: #ffffff;
 }
 
 .form-description {
   margin: 0 0 2rem 0;
+}
+
+body.light-theme .form-description {
   color: #666;
+}
+
+body.dark-theme .form-description {
+  color: #d0d0d0;
 }
 
 /* Fieldset Styling */
 fieldset {
-  border: 1px solid #ddd;
   border-radius: 6px;
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
 
+body.light-theme fieldset {
+  border: 1px solid #ddd;
+}
+
+body.dark-theme fieldset {
+  border: 1px solid #444;
+}
+
 fieldset legend {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
   padding: 0 0.5rem;
+}
+
+body.light-theme fieldset legend {
+  color: #333;
+}
+
+body.dark-theme fieldset legend {
+  color: #ffffff;
 }
 
 /* Form Groups */
@@ -51,8 +86,15 @@ label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #333;
   font-size: 0.95rem;
+}
+
+body.light-theme label {
+  color: #333;
+}
+
+body.dark-theme label {
+  color: #ffffff;
 }
 
 .required {
@@ -71,13 +113,37 @@ select,
 textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
   font-family: inherit;
-  background-color: white;
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
+}
+
+body.light-theme input[type="text"],
+body.light-theme input[type="email"],
+body.light-theme input[type="tel"],
+body.light-theme input[type="date"],
+body.light-theme input[type="time"],
+body.light-theme input[type="password"],
+body.light-theme select,
+body.light-theme textarea {
+  border: 2px solid #ddd;
+  background-color: white;
+  color: #333;
+}
+
+body.dark-theme input[type="text"],
+body.dark-theme input[type="email"],
+body.dark-theme input[type="tel"],
+body.dark-theme input[type="date"],
+body.dark-theme input[type="time"],
+body.dark-theme input[type="password"],
+body.dark-theme select,
+body.dark-theme textarea {
+  border: 2px solid #444;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
 }
 
 /* Focus Styles - Visible and Non-Intrusive */
@@ -111,10 +177,17 @@ textarea[aria-invalid="true"]:focus {
 select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   padding-right: 2.5rem;
+}
+
+body.light-theme select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+}
+
+body.dark-theme select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23e0e0e0' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
 }
 
 /* Textarea */
@@ -137,6 +210,16 @@ textarea {
   font-weight: 500;
   padding: 0;
   margin-bottom: 0.75rem;
+}
+
+body.light-theme .radio-group legend,
+body.light-theme .checkbox-group legend {
+  color: #333;
+}
+
+body.dark-theme .radio-group legend,
+body.dark-theme .checkbox-group legend {
+  color: #ffffff;
 }
 
 .radio-options,
@@ -177,16 +260,33 @@ input[type="checkbox"]:focus {
   font-weight: 400;
 }
 
+body.light-theme .radio-option label,
+body.light-theme .checkbox-option label {
+  color: #333;
+}
+
+body.dark-theme .radio-option label,
+body.dark-theme .checkbox-option label {
+  color: #ffffff;
+}
+
 /* Range Slider */
 input[type="range"] {
   width: 100%;
   height: 8px;
   border-radius: 4px;
-  background: #ddd;
   outline: none;
   padding: 0;
   margin: 0.5rem 0;
   cursor: pointer;
+}
+
+body.light-theme input[type="range"] {
+  background: #ddd;
+}
+
+body.dark-theme input[type="range"] {
+  background: #444;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -227,8 +327,15 @@ input[type="range"]:focus::-moz-range-thumb {
   display: flex;
   justify-content: space-between;
   font-size: 0.875rem;
-  color: #666;
   margin-top: 0.25rem;
+}
+
+body.light-theme .range-labels {
+  color: #666;
+}
+
+body.dark-theme .range-labels {
+  color: #d0d0d0;
 }
 
 output {
@@ -241,7 +348,14 @@ output {
   display: block;
   margin-top: 0.25rem;
   font-size: 0.875rem;
+}
+
+body.light-theme .help-text {
   color: #666;
+}
+
+body.dark-theme .help-text {
+  color: #d0d0d0;
 }
 
 /* Error Messages */
