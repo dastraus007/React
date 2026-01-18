@@ -1,7 +1,19 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@react-app/ui": ["libs/ui/src/index.ts"],
+      "@react-app/hooks": ["libs/hooks/src/index.ts"],
+      "@react-app/i18n": ["libs/i18n/src/index.ts"]
+    }
+  }
 }

@@ -7,6 +7,12 @@
     "module": "ESNext",
     "types": ["vite/client"],
     "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@react-app/ui": ["libs/ui/src/index.ts"],
+      "@react-app/hooks": ["libs/hooks/src/index.ts"],
+      "@react-app/i18n": ["libs/i18n/src/index.ts"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

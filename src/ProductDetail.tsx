@@ -1,33 +1,15 @@
-import { useQuery } from '@tanstack/react-query'
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCartStore } from './store/cartStore'
 import { useToastStore } from './store/toastStore'
-
-interface ProductDetail {
-  id: number
-  title: string
-  description: string
-  price: number
-  brand: string
-  category: string
-}
-
-async function fetchProduct(id: string) {
-  const res = await fetch(`https://dummyjson.com/products/${id}`)
-  if (!res.ok) throw new Error('Failed to fetch product')
-  return res.json() as Promise<ProductDetail>
-}
+import { useProductDetail } from '@react-app/hooks'
+import { currencyConfig, type Language } from '@react-app/i18n'
 
 export default function ProductDetail() {
   const { id } = useParams()
   const { t, i18n } = useTranslation(['products', 'common'])
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['product', id],
-    queryFn: () => fetchProduct(id!),
-    enabled: !!id,
-  })
+  const { data, isLoading, error } = useProductDetail(Number(id))
   
   const addItem = useCartStore((state) => state.addItem)
   const addToast = useToastStore((state) => state.addToast)
@@ -40,9 +22,10 @@ export default function ProductDetail() {
   }
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(i18n.language === 'he' ? 'he-IL' : 'en-US', {
+    const config = currencyConfig[i18n.language as Language] || currencyConfig.en
+    return new Intl.NumberFormat(config.locale, {
       style: 'currency',
-      currency: i18n.language === 'he' ? 'ILS' : 'USD',
+      currency: config.currency,
     }).format(price)
   }
 
