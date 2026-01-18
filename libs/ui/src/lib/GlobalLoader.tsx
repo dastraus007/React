@@ -1,5 +1,6 @@
 interface GlobalLoaderProps {
   isLoading: boolean;
+  message?: string;
 }
 
 export default function GlobalLoader({ isLoading }: GlobalLoaderProps) {
