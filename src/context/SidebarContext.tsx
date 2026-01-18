@@ -1,5 +1,5 @@
-import { createContext, useContext, ReactNode } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import { createContext, useContext, type ReactNode } from 'react'
+import { useLocalStorage } from '@react-app/hooks'
 
 interface SidebarContextType {
   isOpen: boolean
@@ -11,7 +11,7 @@ interface SidebarContextType {
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined)
 
 export function SidebarProvider({ children }: { children: ReactNode }) {
-  const [isOpen, setIsOpen] = useLocalStorage('sidebar-open', false)
+  const [isOpen, setIsOpen] = useLocalStorage<boolean>('sidebar-open', false)
 
   const open = () => setIsOpen(true)
   const close = () => setIsOpen(false)

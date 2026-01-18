@@ -3,19 +3,29 @@ import { useTranslation, Trans } from 'react-i18next'
 import ProductList from './ProductList'
 import ProductDetail from './ProductDetail'
 import Cart from './Cart'
-import CartSidebar from './CartSidebar'
-import ToastHost from './ToastHost'
+import { CartSidebar, ToastHost } from '@react-app/ui'
 import { useCartStore } from './store/cartStore'
+import { useToastStore } from './store/toastStore'
 import { SidebarProvider, useSidebar } from './context/SidebarContext'
-import { useTheme } from './hooks/useTheme'
-import type { Language } from './i18n'
+import { useTheme } from '@react-app/hooks'
+import type { Language } from '@react-app/i18n'
 import './App.css'
 
 function AppContent() {
   const { t, i18n } = useTranslation()
   const totalItems = useCartStore((state) => state.getTotalItems())
-  const { toggle } = useSidebar()
+  const { toggle, isOpen, close } = useSidebar()
   const { theme, setTheme } = useTheme()
+  
+  // Cart state
+  const items = useCartStore((state) => state.items)
+  const removeItem = useCartStore((state) => state.removeItem)
+  const updateQuantity = useCartStore((state) => state.updateQuantity)
+  const getTotalPrice = useCartStore((state) => state.getTotalPrice())
+  
+  // Toast state
+  const toasts = useToastStore((state) => state.toasts)
+  const removeToast = useToastStore((state) => state.removeToast)
 
   const changeLanguage = (lng: Language) => {
     i18n.changeLanguage(lng)
@@ -76,8 +86,15 @@ function AppContent() {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
-      <CartSidebar />
-      <ToastHost />
+      <CartSidebar 
+        isOpen={isOpen}
+        close={close}
+        items={items}
+        removeItem={removeItem}
+        updateQuantity={updateQuantity}
+        getTotalPrice={getTotalPrice}
+      />
+      <ToastHost toasts={toasts} removeToast={removeToast} />
     </div>
   )
 }

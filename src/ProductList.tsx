@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { DataTable } from 'primereact/datatable'
@@ -6,31 +5,13 @@ import { Column } from 'primereact/column'
 import { Button } from 'primereact/button'
 import { useCartStore } from './store/cartStore'
 import { useToastStore } from './store/toastStore'
-import { currencyConfig } from './i18n'
-import type { Language } from './i18n'
-
-interface Product {
-  id: number
-  title: string
-  price: number
-  category?: string
-  thumbnail?: string
-}
-
-async function fetchProducts() {
-  const res = await fetch('https://dummyjson.com/products')
-  if (!res.ok) throw new Error('Failed to fetch')
-  const data = await res.json()
-  return data.products as Product[]
-}
+import { useProducts, type Product } from '@react-app/hooks'
+import { currencyConfig, type Language } from '@react-app/i18n'
 
 export default function ProductList() {
   const { t, i18n } = useTranslation(['products', 'common'])
   const navigate = useNavigate()
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['products'],
-    queryFn: fetchProducts,
-  })
+  const { data, isLoading, error } = useProducts()
   
   const addItem = useCartStore((state) => state.addItem)
   const addToast = useToastStore((state) => state.addToast)
