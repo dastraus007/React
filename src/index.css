@@ -3,14 +3,24 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark theme (default) */
+body.dark-theme {
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+/* Light theme */
+body.light-theme {
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
 }
 
 a {
@@ -42,10 +52,18 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+body.dark-theme button {
+  background-color: #1a1a1a;
+}
+
+body.light-theme button {
+  background-color: #f9f9f9;
+}
+
 button:hover {
   border-color: #646cff;
 }
@@ -54,15 +72,152 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+body.light-theme a:hover {
+  color: #747bff;
+}
+
+/* PrimeReact overrides for better theme support */
+/* DataTable styling */
+body.light-theme .p-datatable {
+  background: white !important;
+  color: #213547 !important;
+}
+
+body.light-theme .p-datatable .p-datatable-header {
+  background: #f8f9fa !important;
+  color: #213547 !important;
+  border-color: #dee2e6 !important;
+}
+
+body.light-theme .p-datatable .p-datatable-thead > tr > th {
+  background: #f8f9fa !important;
+  color: #213547 !important;
+  border-color: #dee2e6 !important;
+  font-weight: 600 !important;
+}
+
+body.light-theme .p-datatable .p-datatable-tbody > tr {
+  background: white !important;
+  color: #213547 !important;
+  border-color: #dee2e6 !important;
+}
+
+body.light-theme .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #dee2e6 !important;
+  color: #213547 !important;
+}
+
+body.light-theme .p-datatable .p-datatable-tbody > tr:hover {
+  background: #f8f9fa !important;
+}
+
+/* Button styling */
+body.light-theme .p-button {
+  color: white !important;
+  background: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+
+body.light-theme .p-button:hover {
+  background: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+
+body.light-theme .p-button.p-button-success {
+  background: #4caf50 !important;
+  border-color: #4caf50 !important;
+  color: white !important;
+}
+
+body.light-theme .p-button.p-button-success:hover {
+  background: #388e3c !important;
+  border-color: #388e3c !important;
+  color: white !important;
+}
+
+body.light-theme .p-button .p-button-label {
+  color: white !important;
+}
+
+body.light-theme .p-button .p-button-icon {
+  color: white !important;
+}
+
+/* Dark theme PrimeReact overrides */
+body.dark-theme .p-datatable {
+  background: #1e1e1e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+body.dark-theme .p-datatable .p-datatable-header {
+  background: #2d2d2d !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  border-color: #3d3d3d !important;
+}
+
+body.dark-theme .p-datatable .p-datatable-thead > tr > th {
+  background: #2d2d2d !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  border-color: #3d3d3d !important;
+  font-weight: 600 !important;
+}
+
+body.dark-theme .p-datatable .p-datatable-tbody > tr {
+  background: #1e1e1e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  border-color: #3d3d3d !important;
+}
+
+body.dark-theme .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #3d3d3d !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+body.dark-theme .p-datatable .p-datatable-tbody > tr:hover {
+  background: #2d2d2d !important;
+}
+
+/* Dark theme buttons */
+body.dark-theme .p-button {
+  color: white !important;
+}
+
+body.dark-theme .p-button .p-button-label {
+  color: white !important;
+}
+
+body.dark-theme .p-button .p-button-icon {
+  color: white !important;
+}
+
+body.dark-theme .p-button.p-button-success {
+  background: #4caf50 !important;
+  border-color: #4caf50 !important;
+  color: white !important;
+}
+
+body.dark-theme .p-button.p-button-success:hover {
+  background: #388e3c !important;
+  border-color: #388e3c !important;
+}
+
+/* Sidebar styling */
+body.light-theme .p-sidebar {
+  background: white !important;
+  color: #213547 !important;
+}
+
+body.light-theme .p-sidebar .p-sidebar-header {
+  background: white !important;
+  color: #213547 !important;
+}
+
+body.dark-theme .p-sidebar {
+  background: #1e1e1e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+body.dark-theme .p-sidebar .p-sidebar-header {
+  background: #1e1e1e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
 }
